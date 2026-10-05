@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f2eb;
+  --foreground: #1d2a1f;
+  --card: #ffffff;
+  --muted: #5c655d;
+  --accent: #d7a24d;
+  --deep: #1d2a1f;
 }
 
 @theme inline {
@@ -12,15 +16,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top, #faf4ee 0%, #f7f2eb 40%, #f3ece4 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(215, 162, 77, 0.25);
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(215, 162, 77, 0.15); }
+  50% { box-shadow: 0 0 30px rgba(215, 162, 77, 0.22); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease-out both;
+}
+
+.gold-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.luxury-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.28), transparent 38%, rgba(215,162,77,0.14));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+.soft-border {
+  box-shadow: inset 0 0 0 1px rgba(215, 162, 77, 0.18);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #1d2a1f 0%, #385744 30%, #b2774f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
